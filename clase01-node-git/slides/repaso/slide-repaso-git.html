@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso Git - Curso Backend</title>
+    <link rel="stylesheet" href="./slide-repaso-git.css">
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <span class="emoji">🔧</span>
+            <h1>REPASO GIT</h1>
+            <h2>Control de Versiones para Backend</h2>
+            <p><span class="highlight">¡Configurando el workflow profesional!</span></p>
+            <p>Comandos básicos, Repositorios, Branching, GitHub</p>
+            <p>🎯 <span class="highlight">10 minutos de repaso esencial</span></p>
+            
+            <div class="concept-box">
+                <h3>¿Por qué Git es crítico en Backend?</h3>
+                <ul>
+                    <li>🔄 <strong>2 repositorios</strong> que manejarás en el curso</li>
+                    <li>👥 <strong>Colaboración</strong> en proyectos de equipo</li>
+                    <li>🚀 <strong>Deploy</strong> automático desde GitHub</li>
+                    <li>📝 <strong>Historial</strong> de cambios en el código</li>
+                    <li>🔒 <strong>Backup</strong> de todo tu progreso</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: Configuración Inicial -->
+        <div class="slide">
+            <h2>⚙️ Configuración Inicial</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Verificar Instalación</h3>
+                    <div class="code"># Verificar que Git está instalado
+git --version
+
+# Debería mostrar algo como:
+# git version 2.34.1</div>
+                    
+                    <h3>Configurar Usuario (OBLIGATORIO)</h3>
+                    <div class="code"># Configurar nombre y email (aparecerán en commits)
+git config --global user.name "Tu Nombre Completo"
+git config --global user.email "tu.email@example.com"
+
+# Verificar configuración
+git config --list
+git config user.name
+git config user.email</div>
+                </div>
+                
+                <div>
+                    <h3>Configuraciones Útiles</h3>
+                    <div class="code"># Editor por defecto (opcional)
+git config --global core.editor "code --wait"
+
+# Colores en terminal
+git config --global color.ui auto
+
+# Configurar VS Code como merge tool
+git config --global merge.tool vscode</div>
+                    
+                    <div class="warning">
+                        <strong>⚠️ IMPORTANTE:</strong> Sin configurar nombre y email, Git no funcionará correctamente. Es lo primero que debes hacer.
+                    </div>
+                    
+                    <div class="success">
+                        <strong>✅ Solo una vez:</strong> Esta configuración se guarda globalmente y no necesitas repetirla.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Comandos Básicos -->
+        <div class="slide">
+            <h2>📁 Comandos Básicos Esenciales</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Inicializar y Clonar</h3>
+                    <div class="code"># Crear nuevo repositorio local
+git init
+
+# Clonar repositorio existente
+git clone https://github.com/usuario/repo.git
+
+# Clonar en carpeta específica
+git clone https://github.com/usuario/repo.git mi-carpeta</div>
+                    
+                    <h3>Área de Staging</h3>
+                    <div class="code"># Ver estado de archivos
+git status
+
+# Agregar archivo específico
+git add archivo.js
+
+# Agregar todos los archivos
+git add .
+
+# Agregar solo archivos modificados (no nuevos)
+git add -u</div>
+                </div>
+                
+                <div>
+                    <h3>Commits</h3>
+                    <div class="code"># Hacer commit con mensaje
+git commit -m "Mensaje descriptivo del cambio"
+
+# Agregar y commit en un paso (solo archivos modificados)
+git commit -am "Mensaje del commit"
+
+# Ver historial de commits
+git log
+git log --oneline  # Versión compacta</div>
+                    
+                    <h3>Trabajar con Remotes</h3>
+                    <div class="code"># Ver repositorios remotos
+git remote -v
+
+# Subir cambios al remote
+git push origin main
+
+# Bajar cambios del remote
+git pull origin main
+
+# Solo bajar sin hacer merge
+git fetch origin</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Workflow del Curso -->
+        <div class="slide demo-slide">
+            <h2>🔄 Workflow del Curso Backend</h2>
+            
+            <div class="concept-box">
+                <h3>Los 2 Repositorios que manejarás:</h3>
+                <div class="two-columns">
+                    <div>
+                        <strong>📝 Repositorio del Curso:</strong><br>
+                        Clase a Clase<br>
+                        <small>(Solo lectura - git pull)</small><br><br>
+                        <ul>
+                            <li>Recibes ejemplos y ejercicios</li>
+                            <li>Se actualiza cada clase</li>
+                            <li>Solo haces <code>git pull</code></li>
+                            <li>Nunca haces push aquí</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong>🚀 Tu API Personal:</strong><br>
+                        Tu Repositorio Individual<br>
+                        <small>(Tu proyecto completo)</small><br><br>
+                        <ul>
+                            <li>Tu proyecto backend personal</li>
+                            <li>Control total (push/pull)</li>
+                            <li>Tu progreso del curso</li>
+                            <li>Se deployará al final</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="workflow-box">
+                <h3>Workflow típico de cada clase:</h3>
+                <div style="margin: 20px 0;">
+                    <span class="workflow-step">git pull</span>
+                    <span class="arrow">→</span>
+                    <span class="workflow-step">Hacer ejercicios</span>
+                    <span class="arrow">→</span>
+                    <span class="workflow-step">Aplicar a tu API</span>
+                    <span class="arrow">→</span>
+                    <span class="workflow-step">git add .</span>
+                    <span class="arrow">→</span>
+                    <span class="workflow-step">git commit</span>
+                    <span class="arrow">→</span>
+                    <span class="workflow-step">git push</span>
+                </div>
+            </div>
+            
+            <div class="code"># Ejemplo de sesión típica de clase:
+
+# 1. Actualizar repo del curso (ejercicios y ejemplos)
+cd backend-curso-comuit
+git pull origin main
+
+# 2. Trabajar en ejercicios de la clase...
+
+# 3. Aplicar aprendido a tu API personal
+cd ../mi-api-blog
+git add .
+git commit -m "Clase 5: Agregados middlewares de autenticación"
+git push origin main</div>
+        </div>
+
+        <!-- Slide 5: Branching Básico -->
+        <div class="slide">
+            <h2>🌿 Branches (Ramas)</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Conceptos Básicos</h3>
+                    <div class="code"># Ver ramas actuales
+git branch
+
+# Ver todas las ramas (incluidas remotas)
+git branch -a
+
+# Crear nueva rama
+git branch nueva-funcionalidad
+
+# Cambiar a una rama
+git checkout nueva-funcionalidad
+
+# Crear y cambiar en un comando
+git checkout -b otra-rama
+
+# Rama actual
+git branch --show-current</div>
+                    
+                    <div class="console-tip">
+                        <strong>💡 Tip:</strong> En proyectos nuevos, la rama principal se llama <code>main</code>. En proyectos viejos puede ser <code>master</code>.
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Merging y Cleanup</h3>
+                    <div class="code"># Volver a main
+git checkout main
+
+# Hacer merge de otra rama
+git merge nueva-funcionalidad
+
+# Eliminar rama ya mergeada
+git branch -d nueva-funcionalidad
+
+# Forzar eliminación de rama
+git branch -D rama-no-mergeada
+
+# Subir nueva rama al remote
+git push origin nueva-funcionalidad</div>
+                    
+                    <div class="success">
+                        <strong>🎯 Para el curso:</strong> Principalmente trabajaremos en <code>main</code>, pero es bueno saber branching para:
+                        <ul>
+                            <li>Experimentar sin romper código</li>
+                            <li>Colaborar en equipos</li>
+                            <li>Preparar features grandes</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: GitHub -->
+        <div class="slide">
+            <h2>🐙 GitHub Esencial</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Método Recomendado: Crear en GitHub primero</h3>
+                    <div class="success">
+                        <strong>✅ Forma más práctica:</strong>
+                        <ol>
+                            <li>Crear repo en GitHub</li>
+                            <li><strong>✅ Marcar "Add a README file"</strong></li>
+                            <li>Clonar a tu computadora</li>
+                            <li>¡Listo para trabajar!</li>
+                        </ol>
+                    </div>
+                    
+                    <div class="code"># Después de crear en GitHub con README:
+git clone https://github.com/tu-usuario/mi-api-blog.git
+cd mi-api-blog
+
+# ¡Ya tienes primer commit y todo configurado!
+# Ahora solo trabajas normalmente:
+# ... hacer cambios ...
+git add .
+git commit -m "Inicializar proyecto Node.js"
+git push</div>
+                    
+                    <div class="console-tip">
+                        <strong>💡 ¿Por qué es mejor así?</strong><br>
+                        • El primer commit ya está hecho<br>
+                        • Remote origin ya configurado<br>
+                        • README.md listo para documentar<br>
+                        • <strong>¡Evitas errores de configuración!</strong>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Método Manual (más complicado)</h3>
+                    <div class="warning">
+                        <strong>⚠️ Solo si ya tienes proyecto local:</strong>
+                    </div>
+                    <div class="code"># Si ya tienes carpeta con código:
+cd mi-proyecto-existente
+git init
+
+# Crear repo VACÍO en GitHub (sin README)
+git remote add origin https://github.com/usuario/mi-proyecto.git
+
+# Primera subida
+git add .
+git commit -m "Primer commit"
+git push -u origin main</div>
+                    
+                    <div class="warning">
+                        <strong>❌ Problemas comunes de este método:</strong>
+                        <ul>
+                            <li>Olvidas configurar remote</li>
+                            <li>Nombre de rama incorrecto (master vs main)</li>
+                            <li>Primer push falla</li>
+                            <li>Más pasos = más errores</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Errores Comunes -->
+        <div class="slide practice-slide">
+            <h2>🚨 Errores Comunes y Soluciones</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Problemas de Configuración</h3>
+                    <div class="warning">
+                        <strong>❌ Error:</strong> "Please tell me who you are"
+                        <div class="code"># Solución:
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"</div>
+                    </div>
+                    
+                    <div class="warning">
+                        <strong>❌ Error:</strong> "remote origin already exists"
+                        <div class="code"># Solución:
+git remote remove origin
+git remote add origin https://github.com/usuario/repo.git</div>
+                    </div>
+                    
+                    <div class="warning">
+                        <strong>❌ Error:</strong> Push rejected
+                        <div class="code"># Solución:
+git pull origin main
+# Resolver conflictos si hay
+git push origin main</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Comandos de Rescate</h3>
+                    <div class="code"># Deshacer último commit (mantener cambios)
+git reset --soft HEAD~1
+
+# Deshacer cambios en archivo
+git checkout -- archivo.js
+
+# Ver diferencias antes de commit
+git diff
+
+# Ver diferencias de archivo específico
+git diff archivo.js
+
+# Volver a versión anterior de archivo
+git checkout HEAD~1 -- archivo.js</div>
+                    
+                    <div class="console-tip">
+                        <strong>🆘 Comando de emergencia:</strong><br>
+                        Si algo sale mal y no sabes qué hacer:<br>
+                        <code>git status</code> siempre te dice qué está pasando
+                    </div>
+                    
+                    <div class="success">
+                        <strong>💡 .gitignore esencial para Node.js:</strong>
+                        <div class="code">node_modules/
+.env
+*.log
+.DS_Store
+dist/</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 8: Resumen -->
+        <div class="slide summary-slide">
+            <span class="emoji">🎯</span>
+            <h2>Resumen Git para Backend</h2>
+            
+            <div class="concept-box">
+                <h3>🔧 Comandos que usarás TODOS los días:</h3>
+                <div class="code"># El flujo de trabajo básico diario:
+git status          # ¿Qué cambió?
+git add .           # Agregar cambios
+git commit -m "..."  # Guardar cambios
+git push            # Subir a GitHub
+git pull            # Bajar cambios</div>
+            </div>
+            
+            <div class="two-columns">
+                <div>
+                    <div class="success">
+                        <strong>✅ Configuración completa:</strong>
+                        <ul>
+                            <li>Git instalado y configurado</li>
+                            <li>Nombre y email globalmente</li>
+                            <li>Cuenta GitHub activa</li>
+                            <li>SSH keys (opcional pero recomendado)</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="success">
+                        <strong>🚀 Ready para el curso:</strong>
+                        <ul>
+                            <li>2 repositorios configurados</li>
+                            <li>Workflow clase a clase claro</li>
+                            <li>Backup automático de progreso</li>
+                            <li>Deploy desde GitHub al final</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="console-tip">
+                <strong>🎯 Próximo paso:</strong> En la siguiente sección configuraremos los 2 repositorios del curso y haremos el primer commit de tu proyecto personal.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">8</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress-bar');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Touch/swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+
+        // Inicializar
+        updateProgress();
+    </script>
+</body>
+</html>

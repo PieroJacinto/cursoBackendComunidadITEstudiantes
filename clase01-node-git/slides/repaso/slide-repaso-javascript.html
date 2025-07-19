@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repaso JavaScript Básico - Clase 1</title>
+    <link rel="stylesheet" href="./slide-repaso-javascript.css">
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <span class="emoji">📚</span>
+            <h1>REPASO JAVASCRIPT</h1>
+            <h2>Fundamentos Básicos para Backend</h2>
+            <p><span class="highlight">¡Reactivando conocimientos para Node.js!</span></p>
+            <p>Variables, Condicionales, Bucles, Funciones</p>
+            <p>🎯 <span class="highlight">20 minutos de repaso esencial</span></p>
+            
+            <div class="concept-box">
+                <h3>🎯 ¿Por qué repasamos JavaScript?</h3>
+                <ul>
+                    <li>🔧 <strong>Node.js usa JavaScript</strong> - misma sintaxis, diferente entorno</li>
+                    <li>📝 <strong>Reactivar conceptos</strong> que usaremos en backend</li>
+                    <li>🚀 <strong>Base sólida</strong> para Express, APIs y bases de datos</li>
+                    <li>⚡ <strong>Solo lo esencial</strong> - directo al grano</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: Variables -->
+        <div class="slide">
+            <h2>📦 Variables y Tipos de Datos</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Declaración de Variables</h3>
+                    <div class="code">// ✅ Usar const por defecto
+const nombre = 'Ana';
+const edad = 25;
+const activo = true;
+
+// ✅ Usar let cuando necesites cambiar
+let contador = 0;
+contador = contador + 1;
+
+// ❌ NO usar var (es legacy)
+var viejo = 'evitar';</div>
+                    
+                    <div class="console-tip">
+                        <strong>📝 Regla simple:</strong><br>
+                        <strong>const</strong> → por defecto<br>
+                        <strong>let</strong> → cuando cambies el valor<br>
+                        <strong>var</strong> → nunca usar
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Tipos de Datos Básicos</h3>
+                    <div class="code">// String (texto)
+const mensaje = 'Hola Backend';
+const plantilla = `Mi nombre es ${nombre}`;
+
+// Number (números)
+const precio = 15.99;
+const stock = 10;
+
+// Boolean (verdadero/falso)
+const disponible = true;
+const agotado = false;
+
+// Verificar tipo
+console.log(typeof mensaje);    // "string"
+console.log(typeof edad);       // "number"
+console.log(typeof activo);     // "boolean"</div>
+                    
+                    <div class="success">
+                        <strong>💡 En Backend usaremos:</strong>
+                        <ul>
+                            <li><strong>const</strong> para la mayoría de variables</li>
+                            <li><strong>Template literals</strong> (``) para mensajes</li>
+                            <li><strong>typeof</strong> para validaciones</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Condicionales -->
+        <div class="slide">
+            <h2>🔀 Condicionales if/else</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>if/else Básico</h3>
+                    <div class="code">const usuario = {
+    nombre: 'Ana',
+    edad: 25,
+    activo: true
+};
+
+// if simple
+if (usuario.activo) {
+    console.log('Usuario está activo');
+}
+
+// if/else
+if (usuario.edad >= 18) {
+    console.log('Es mayor de edad');
+} else {
+    console.log('Es menor de edad');
+}
+
+// if/else if/else
+if (usuario.edad < 18) {
+    console.log('Menor');
+} else if (usuario.edad < 65) {
+    console.log('Adulto');
+} else {
+    console.log('Adulto mayor');
+}</div>
+                </div>
+                
+                <div>
+                    <h3>Operadores de Comparación</h3>
+                    <div class="code">// Comparación estricta (SIEMPRE usar)
+const edad = 25;
+console.log(edad === 25);     // true
+console.log(edad === '25');   // false
+console.log(edad !== 30);     // true
+
+// Comparadores
+console.log(edad > 18);       // true
+console.log(edad <= 25);      // true
+
+// Operadores lógicos
+const activo = true;
+const premium = false;
+
+console.log(activo && premium);  // false (AND)
+console.log(activo || premium);  // true (OR)
+console.log(!activo);            // false (NOT)</div>
+                    
+                    <div class="console-tip">
+                        <strong>⚠️ Importante:</strong> Siempre usar <code>===</code> y <code>!==</code> (comparación estricta) en lugar de <code>==</code> y <code>!=</code>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <h3>🎯 Ejemplo práctico para Backend:</h3>
+                <div class="code">// Validación que haremos en APIs
+function validarUsuario(datos) {
+    if (!datos.nombre) {
+        return { error: 'Nombre es requerido' };
+    }
+    
+    if (!datos.email || !datos.email.includes('@')) {
+        return { error: 'Email inválido' };
+    }
+    
+    if (datos.edad < 18) {
+        return { error: 'Debe ser mayor de edad' };
+    }
+    
+    return { exito: true, mensaje: 'Usuario válido' };
+}</div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Bucles -->
+        <div class="slide">
+            <h2>🔄 Bucles for y forEach</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Bucle for Tradicional</h3>
+                    <div class="code">const numeros = [1, 2, 3, 4, 5];
+
+// for tradicional
+for (let i = 0; i < numeros.length; i++) {
+    console.log(`Posición ${i}: ${numeros[i]}`);
+}
+
+// for...of (más moderno)
+for (const numero of numeros) {
+    console.log(`Número: ${numero}`);
+}
+
+// Ejemplo práctico
+const productos = ['Laptop', 'Mouse', 'Teclado'];
+for (const producto of productos) {
+    console.log(`Producto disponible: ${producto}`);
+}</div>
+                    
+                    <div class="console-tip">
+                        <strong>💡 Tip:</strong> <code>for...of</code> es más legible cuando solo necesitas los valores, no los índices.
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>forEach (Más Común)</h3>
+                    <div class="code">const usuarios = [
+    { nombre: 'Ana', edad: 25 },
+    { nombre: 'Luis', edad: 30 },
+    { nombre: 'María', edad: 22 }
+];
+
+// forEach básico
+usuarios.forEach(usuario => {
+    console.log(`Usuario: ${usuario.nombre}`);
+});
+
+// forEach con índice
+usuarios.forEach((usuario, indice) => {
+    console.log(`${indice + 1}. ${usuario.nombre} - ${usuario.edad} años`);
+});
+
+// Procesamiento de datos
+let totalEdad = 0;
+usuarios.forEach(usuario => {
+    totalEdad += usuario.edad;
+});
+console.log(`Edad promedio: ${totalEdad / usuarios.length}`);</div>
+                    
+                    <div class="success">
+                        <strong>🚀 En Backend usaremos:</strong>
+                        <ul>
+                            <li><strong>forEach</strong> para procesar arrays de datos</li>
+                            <li><strong>for...of</strong> para iteraciones simples</li>
+                            <li><strong>for tradicional</strong> cuando necesites índices</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Funciones -->
+        <div class="slide">
+            <h2>⚡ Funciones y Arrow Functions</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Funciones Tradicionales</h3>
+                    <div class="code">// Función simple
+function saludar(nombre) {
+    return `Hola ${nombre}!`;
+}
+
+// Función con múltiples parámetros
+function calcularTotal(precio, cantidad) {
+    return precio * cantidad;
+}
+
+// Función con valor por defecto
+function crearUsuario(nombre, rol = 'usuario') {
+    return {
+        nombre: nombre,
+        rol: rol,
+        activo: true
+    };
+}
+
+// Uso
+console.log(saludar('Ana'));
+console.log(calcularTotal(15.99, 3));
+console.log(crearUsuario('Luis'));
+console.log(crearUsuario('María', 'admin'));</div>
+                </div>
+                
+                <div>
+                    <h3>Arrow Functions (Modernas)</h3>
+                    <div class="code">// Arrow function básica
+const sumar = (a, b) => {
+    return a + b;
+};
+
+// Arrow function simplificada (una línea)
+const multiplicar = (a, b) => a * b;
+
+// Arrow function sin parámetros
+const obtenerFecha = () => new Date();
+
+// Arrow function con un parámetro
+const duplicar = numero => numero * 2;
+
+// Uso
+console.log(sumar(5, 3));        // 8
+console.log(multiplicar(4, 7));  // 28
+console.log(obtenerFecha());     // fecha actual
+console.log(duplicar(10));       // 20</div>
+                    
+                    <div class="success">
+                        <strong>✅ Cuándo usar cada una:</strong>
+                        <ul>
+                            <li><strong>Función tradicional:</strong> Funciones principales, métodos</li>
+                            <li><strong>Arrow function:</strong> Callbacks, funciones cortas</li>
+                            <li><strong>Una línea:</strong> Operaciones simples</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="concept-box">
+                <h3>🎯 Ejemplo práctico para Backend:</h3>
+                <div class="code">// Funciones que crearemos en APIs
+function validarEmail(email) {
+    return email && email.includes('@') && email.includes('.');
+}
+
+const formatearRespuesta = (datos, mensaje) => ({
+    exito: true,
+    mensaje: mensaje,
+    datos: datos,
+    timestamp: new Date().toISOString()
+});
+
+// Arrow functions para procesamiento
+const usuarios = [
+    { nombre: 'Ana', activo: true },
+    { nombre: 'Luis', activo: false }
+];
+
+const usuariosActivos = usuarios.filter(usuario => usuario.activo);
+console.log(usuariosActivos); // Solo Ana</div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Pregunta de Verificación -->
+        <div class="slide practice-slide">
+            <span class="emoji">🎯</span>
+            <h2>Pregunta de Verificación</h2>
+            
+            <div class="concept-box">
+                <h3>💡 ¿Cuál es la salida de este código?</h3>
+                <div class="code">const productos = [
+    { nombre: 'Laptop', precio: 1000, stock: 5 },
+    { nombre: 'Mouse', precio: 25, stock: 0 },
+    { nombre: 'Teclado', precio: 75, stock: 10 }
+];
+
+let productosDisponibles = 0;
+let totalValor = 0;
+
+for (const producto of productos) {
+    if (producto.stock > 0) {
+        productosDisponibles++;
+        totalValor += producto.precio * producto.stock;
+    }
+}
+
+console.log(`Productos disponibles: ${productosDisponibles}`);
+console.log(`Valor total del inventario: $${totalValor}`);</div>
+            </div>
+            
+            <div class="two-columns">
+                <div>
+                    <div class="warning">
+                        <strong>🤔 Piensa paso a paso:</strong>
+                        <ol>
+                            <li>¿Qué productos tienen stock > 0?</li>
+                            <li>¿Cómo se calcula el valor total?</li>
+                            <li>¿Qué hace el contador productosDisponibles?</li>
+                        </ol>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="success">
+                        <strong>✅ Respuesta correcta:</strong>
+                        <div class="code">Productos disponibles: 2
+Valor total del inventario: $5750</div>
+                        
+                        <strong>💡 Explicación:</strong>
+                        <ul>
+                            <li>Laptop: stock 5 → 1000 × 5 = 5000</li>
+                            <li>Mouse: stock 0 → no cuenta</li>
+                            <li>Teclado: stock 10 → 75 × 10 = 750</li>
+                            <li>Total: 2 productos, $5750</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumen -->
+        <div class="slide summary-slide">
+            <span class="emoji">🎯</span>
+            <h2>Resumen y Próximos Pasos</h2>
+            
+            <div class="concept-box">
+                <h3>✅ Conceptos repasados:</h3>
+                <div class="two-columns">
+                    <div>
+                        <ul>
+                            <li><strong>Variables:</strong> const/let (no var)</li>
+                            <li><strong>Tipos:</strong> string, number, boolean</li>
+                            <li><strong>Condicionales:</strong> if/else con ===</li>
+                            <li><strong>Bucles:</strong> for, for...of, forEach</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul>
+                            <li><strong>Funciones:</strong> tradicionales vs arrow</li>
+                            <li><strong>Template literals:</strong> `${variable}`</li>
+                            <li><strong>Operadores:</strong> &&, ||, !</li>
+                            <li><strong>Objetos y arrays</strong> básicos</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="success">
+                <strong>🚀 Con estos conceptos vas a poder:</strong>
+                <ul>
+                    <li>Usar <strong>Node.js</strong> para crear scripts backend</li>
+                    <li>Manejar <strong>datos</strong> en APIs y servidores</li>
+                    <li>Crear <strong>funciones</strong> para procesar información</li>
+                    <li>Implementar <strong>validaciones</strong> en tu API</li>
+                    <li>Procesar <strong>arrays de datos</strong> de base de datos</li>
+                </ul>
+            </div>
+            
+            <div class="console-tip">
+                <strong>🎯 Próximo paso:</strong> Usar estos conceptos en <strong>Node.js</strong> para crear tu primer script backend con <code>process.argv</code> y manejo de archivos.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">7</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress-bar');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Touch/swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+
+        // Inicializar
+        updateProgress();
+    </script>
+</body>
+</html>
