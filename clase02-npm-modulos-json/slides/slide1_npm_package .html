@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NPM y package.json - Clase 2 Backend</title>
+    <link rel="stylesheet" href="./slide1_npm_package .css">
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <span class="emoji">📦</span>
+            <h1>NPM & PACKAGE.JSON</h1>
+            <h2>Node Package Manager</h2>
+            <p><span class="highlight">¡El ecosistema más grande de paquetes!</span></p>
+            <p>Gestión de dependencias, Scripts, Automatización</p>
+            <p>🎯 <span class="highlight">45 minutos para dominar NPM</span></p>
+            
+            <div class="concept-box">
+                <h3>¿Por qué NPM es crítico en Backend?</h3>
+                <ul>
+                    <li>📦 <strong>+2 millones de paquetes</strong> disponibles</li>
+                    <li>🔧 <strong>Scripts de automatización</strong> para desarrollo</li>
+                    <li>🚀 <strong>Deploy y producción</strong> dependen de package.json</li>
+                    <li>👥 <strong>Colaboración</strong> en equipos profesionales</li>
+                    <li>⚡ <strong>Express, Sequelize, JWT</strong> y todo lo que usaremos</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: ¿Qué es NPM? -->
+        <div class="slide">
+            <h2>📦 ¿Qué es NPM?</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Node Package Manager</h3>
+                    <div class="concept-box">
+                        <p><strong>NPM es 3 cosas a la vez:</strong></p>
+                        <ul>
+                            <li>🌐 <strong>Repositorio online:</strong> npmjs.com</li>
+                            <li>💻 <strong>Cliente terminal:</strong> comando <code>npm</code></li>
+                            <li>📋 <strong>Registry:</strong> base de datos de paquetes</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <strong>✅ Viene incluido con Node.js</strong><br>
+                        Al instalar Node.js, NPM se instala automáticamente
+                    </div>
+                    
+                    <div class="code">// Verificar que NPM funciona:
+npm --version
+// Debería mostrar: 9.6.7 (o superior)
+
+// Ayuda básica:
+npm help
+npm help install</div>
+                </div>
+                
+                <div>
+                    <h3>¿Para qué se usa NPM?</h3>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <span class="feature-icon">📥</span>
+                            <strong>Instalar paquetes</strong>
+                            <p>Express, Sequelize, JWT, etc.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <span class="feature-icon">⚙️</span>
+                            <strong>Scripts automáticos</strong>
+                            <p>start, test, build, deploy</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <span class="feature-icon">🔧</span>
+                            <strong>Gestionar versiones</strong>
+                            <p>Control de compatibilidad</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <span class="feature-icon">👥</span>
+                            <strong>Compartir código</strong>
+                            <p>Colaboración en equipos</p>
+                        </div>
+                    </div>
+                    
+                    <div class="console-tip">
+                        <strong>💡 En este curso usaremos NPM para:</strong><br>
+                        • Instalar Express (Clase 3)<br>
+                        • Instalar Sequelize (Clase 9)<br>
+                        • Scripts para desarrollo<br>
+                        • Deploy automático (Clase 16)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Demo npm init -->
+        <div class="slide demo-slide">
+            <h2>🚀 DEMO: npm init</h2>
+            
+            <div class="demo-container">
+                <h3>Dos formas de crear package.json</h3>
+                
+                <div class="two-columns">
+                    <div>
+                        <h4>🎯 Método Recomendado: npm init -y</h4>
+                        <div class="demo-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <div class="code">cd mi-api-blog
+npm init -y
+
+# ¡Crea package.json instantáneamente!
+# Usa valores por defecto inteligentes</div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-step">
+                            <span class="step-number">2</span>
+                            <div class="step-content">
+                                <div class="code"># Resultado inmediato:
+{
+  "name": "mi-api-blog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}</div>
+                            </div>
+                        </div>
+                        
+                        <div class="demo-step">
+                            <span class="step-number">3</span>
+                            <div class="step-content">
+                                <strong>Editar manualmente después:</strong>
+                                <div class="code"># Abrir package.json y personalizar:
+{
+  "name": "mi-api-blog",
+  "version": "1.0.0",
+  "description": "API para blog personal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "Tu Nombre",
+  "license": "MIT"
+}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h4>📝 Método Interactivo: npm init</h4>
+                        <div class="demo-step">
+                            <span class="step-number">1</span>
+                            <div class="step-content">
+                                <div class="code">npm init
+
+# Preguntas paso a paso:
+package name: mi-api-blog
+version: (1.0.0) 
+description: API para blog personal
+entry point: server.js
+test command: 
+git repository: 
+keywords: blog, api
+author: Tu Nombre
+license: MIT</div>
+                            </div>
+                        </div>
+                        
+                        <div class="warning">
+                            <strong>⚠️ Más lento pero educativo</strong><br>
+                            Útil para entender cada campo, pero toma más tiempo
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>🎯 Para este curso: usaremos <code>npm init -y</code> + edición manual</strong><br>
+                    Más rápido y control total sobre el resultado final
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: package.json Estructura -->
+        <div class="slide">
+            <h2>📋 package.json - Estructura</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Campos Esenciales</h3>
+                    <div class="code">{
+  "name": "mi-api-blog",
+  "version": "1.0.0",
+  "description": "API para blog personal",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests yet\""
+  },
+  "keywords": ["blog", "api", "nodejs"],
+  "author": "Tu Nombre <tu@email.com>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}</div>
+                    
+                    <div class="success">
+                        <strong>🎯 En Clase 3 agregaremos:</strong><br>
+                        <code>"express": "^4.18.2"</code> en dependencies
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Explicación de Campos</h3>
+                    
+                    <div class="field-explanation">
+                        <div class="field-item">
+                            <strong>"name":</strong> Nombre único del proyecto
+                        </div>
+                        <div class="field-item">
+                            <strong>"version":</strong> Versionado semántico (major.minor.patch)
+                        </div>
+                        <div class="field-item">
+                            <strong>"description":</strong> Qué hace tu proyecto
+                        </div>
+                        <div class="field-item">
+                            <strong>"main":</strong> Archivo principal (punto de entrada)
+                        </div>
+                        <div class="field-item">
+                            <strong>"scripts":</strong> Comandos automatizados
+                        </div>
+                        <div class="field-item">
+                            <strong>"dependencies":</strong> Paquetes para producción
+                        </div>
+                        <div class="field-item">
+                            <strong>"devDependencies":</strong> Paquetes solo para desarrollo
+                        </div>
+                    </div>
+                    
+                    <div class="console-tip">
+                        <strong>💡 Diferencia clave:</strong><br>
+                        <strong>dependencies:</strong> Express, Sequelize (necesarios en producción)<br>
+                        <strong>devDependencies:</strong> Nodemon, Jest (solo desarrollo)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Scripts NPM -->
+        <div class="slide">
+            <h2>⚙️ Scripts NPM</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Scripts Básicos</h3>
+                    <div class="code">{
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"No tests yet\"",
+    "info": "node -e \"console.log('Proyecto:', require('./package.json').name)\""
+  }
+}</div>
+                    
+                    <div class="code">// Ejecutar scripts:
+npm start       // Ejecuta "node server.js"
+npm run dev     // Ejecuta "node server.js" 
+npm test        // Ejecuta el test (shortcut)
+npm run info    // Ejecuta script personalizado</div>
+                    
+                    <div class="warning">
+                        <strong>⚠️ Scripts especiales:</strong><br>
+                        <code>start</code> y <code>test</code> NO necesitan <code>run</code><br>
+                        Scripts personalizados SÍ necesitan <code>npm run nombre</code>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Scripts por Tipo de API</h3>
+                    
+                    <div class="api-scripts">
+                        <div class="api-type">
+                            <strong>📝 Blog:</strong>
+                            <div class="code">"scripts": {
+  "start": "node server.js",
+  "dev": "node server.js",
+  "create-post": "node scripts/createPost.js"
+}</div>
+                        </div>
+                        
+                        <div class="api-type">
+                            <strong>🍽️ Restaurante:</strong>
+                            <div class="code">"scripts": {
+  "start": "node server.js",
+  "dev": "node server.js",
+  "update-menu": "node scripts/updateMenu.js"
+}</div>
+                        </div>
+                        
+                        <div class="api-type">
+                            <strong>📚 E-learning:</strong>
+                            <div class="code">"scripts": {
+  "start": "node server.js",
+  "dev": "node server.js",
+  "create-course": "node scripts/createCourse.js"
+}</div>
+                        </div>
+                        
+                        <div class="api-type">
+                            <strong>🛍️ E-commerce:</strong>
+                            <div class="code">"scripts": {
+  "start": "node server.js",
+  "dev": "node server.js",
+  "update-stock": "node scripts/updateStock.js"
+}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Ejercicio package.json -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO: Crear tu package.json</h2>
+            
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <span class="exercise-icon">⏱️</span>
+                    <h3>15 minutos - Crear package.json personalizado</h3>
+                </div>
+                
+                <div class="exercise-steps">
+                    <div class="exercise-step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <strong>Navegar a tu proyecto personal</strong>
+                            <div class="code">cd mi-api-[tipo-proyecto]
+pwd  # Verificar ubicación</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <strong>Crear package.json rápidamente</strong>
+                            <div class="code">npm init -y
+
+# ¡Listo! package.json creado instantáneamente</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <strong>Personalizar package.json</strong>
+                            <div class="code">// Abrir package.json en VS Code y editar:
+{
+  "name": "mi-api-[tipo]",  // blog, restaurante, etc
+  "description": "API para [descripción específica]",
+  "main": "server.js",      // cambiar de index.js
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "author": "Tu Nombre <tu@email.com>",
+  "license": "MIT"
+}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <strong>Crear server.js básico</strong>
+                            <div class="code">// server.js
+console.log('🚀 Servidor iniciando...');
+console.log('📦 Proyecto:', require('./package.json').name);
+console.log('📝 Descripción:', require('./package.json').description);
+console.log('✅ package.json funcionando correctamente!');</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">5</span>
+                        <div class="step-content">
+                            <strong>Probar que funciona</strong>
+                            <div class="code">npm start
+npm run info
+
+# Debería mostrar información de tu proyecto
+# ¡Si funciona, ya tienes NPM configurado!</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>🎯 Objetivo:</strong> Verificar que <code>npm start</code> funciona y muestra la información de tu proyecto personal.
+                </div>
+                
+                <div class="console-tip">
+                    <strong>🆘 Si algo no funciona:</strong> Comparte tu pantalla o el error en el chat para ayudarte en tiempo real.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumen NPM -->
+        <div class="slide summary-slide">
+            <span class="emoji">🎯</span>
+            <h2>Resumen: NPM y package.json</h2>
+            
+            <div class="concept-box">
+                <h3>🔧 Comandos NPM que conocemos ahora:</h3>
+                <div class="code"># Verificación
+npm --version              # Ver versión de NPM
+
+# Creación de proyectos  
+npm init -y               # Crear package.json con defaults (RECOMENDADO)
+npm init                  # Crear package.json interactivo (más lento)
+
+# Ejecución de scripts
+npm start                 # Ejecutar script "start"
+npm test                  # Ejecutar script "test"  
+npm run [nombre]          # Ejecutar script personalizado</div>
+            </div>
+            
+            <div class="two-columns">
+                <div>
+                    <div class="success">
+                        <strong>✅ Lo que dominamos:</strong>
+                        <ul>
+                            <li>Crear package.json con npm init</li>
+                            <li>Entender estructura básica</li>
+                            <li>Configurar scripts personalizados</li>
+                            <li>Ejecutar comandos npm</li>
+                            <li>server.js como punto de entrada</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="success">
+                        <strong>🚀 Próximo paso:</strong>
+                        <ul>
+                            <li>Módulos built-in de Node.js</li>
+                            <li>Sistema de archivos (fs)</li>
+                            <li>Leer y escribir archivos</li>
+                            <li>JSON como "base de datos"</li>
+                            <li>Preparar datos para Express</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="console-tip">
+                <strong>🎯 En Clase 3:</strong> Usaremos <code>npm install express</code> para instalar nuestro primer paquete y crear un servidor HTTP real.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">7</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress-bar');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Touch/swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+
+        // Inicializar
+        updateProgress();
+    </script>
+</body>
+</html>

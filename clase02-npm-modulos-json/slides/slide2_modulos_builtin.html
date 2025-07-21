@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulos Built-in - Clase 2 Backend</title>
+    <link rel="stylesheet" href="./slide2_modulos_builtin.css">
+</head>
+<body>
+    <div class="progress-bar" id="progress-bar"></div>
+    
+    <div class="slideshow-container">
+        
+        <!-- Slide 1: Portada -->
+        <div class="slide active">
+            <span class="emoji">🔧</span>
+            <h1>MÓDULOS BUILT-IN</h1>
+            <h2>Sistema de Archivos con fs</h2>
+            <p><span class="highlight">¡Herramientas incluidas en Node.js!</span></p>
+            <p>Leer archivos, Escribir archivos, Trabajar con datos</p>
+            <p>🎯 <span class="highlight">50 minutos para dominar archivos</span></p>
+            
+            <div class="concept-box">
+                <h3>¿Para qué necesitamos leer y escribir archivos?</h3>
+                <ul>
+                    <li>📄 <strong>Datos de ejemplo:</strong> posts, menú, productos, cursos</li>
+                    <li>📊 <strong>Configuración:</strong> información del proyecto</li>
+                    <li>📝 <strong>Logs:</strong> registrar qué pasa en nuestra API</li>
+                    <li>🚀 <strong>Base para APIs:</strong> antes de usar base de datos real</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Slide 2: ¿Qué es require()? -->
+        <div class="slide">
+            <h2>📦 ¿Qué es require()?</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>Importar funcionalidades en Node.js</h3>
+                    <div class="code">// En el navegador usábamos:
+// &lt;script src="archivo.js">&lt;/script>
+
+// En Node.js usamos:
+const fs = require('fs');
+
+// fs = File System (sistema de archivos)
+// Ahora podemos usar fs.readFileSync(), fs.writeFileSync()</div>
+                    
+                    <div class="concept-box">
+                        <h4>¿Qué significa esto?</h4>
+                        <p><strong>require('fs')</strong> = "Dame todas las funciones para trabajar con archivos"</p>
+                        <p><strong>const fs</strong> = "Guárdalo en una variable llamada fs"</p>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>Módulos que vienen incluidos</h3>
+                    
+                    <div class="simple-list">
+                        <div class="list-item">
+                            <span class="item-icon">📁</span>
+                            <div>
+                                <strong>fs</strong> - Sistema de archivos<br>
+                                <small>Leer y escribir archivos</small>
+                            </div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <span class="item-icon">🛣️</span>
+                            <div>
+                                <strong>path</strong> - Rutas de archivos<br>
+                                <small>Windows vs Mac vs Linux</small>
+                            </div>
+                        </div>
+                        
+                        <div class="list-item">
+                            <span class="item-icon">⚙️</span>
+                            <div>
+                                <strong>process</strong> - Información del sistema<br>
+                                <small>Versión de Node.js, plataforma</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="success">
+                        <strong>✅ Hoy nos enfocamos en:</strong> <code>fs</code> (sistema de archivos)
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Demo simple - Crear archivo -->
+        <div class="slide demo-slide">
+            <h2>📝 DEMO 1: Crear un archivo de texto</h2>
+            
+            <div class="demo-container">
+                <h3>Vamos a escribir nuestro primer archivo paso a paso</h3>
+                
+                <div class="demo-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Crear archivo JavaScript</h4>
+                        <div class="code">// Crear archivo: escribir-mensaje.js
+// (crear en VS Code)</div>
+                        <p>Simplemente crear un archivo nuevo en VS Code llamado <strong>escribir-mensaje.js</strong></p>
+                    </div>
+                </div>
+                
+                <div class="demo-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Escribir el código completo</h4>
+                        <div class="code">// escribir-mensaje.js
+const fs = require('fs');
+
+// El mensaje que queremos guardar
+const mensaje = `¡Hola! Este es mi primer archivo creado con Node.js
+
+Fecha: ${new Date().toLocaleString()}
+Proyecto: Mi API Backend
+Estado: ¡Funcionando perfectamente!`;
+
+// Escribir el archivo
+fs.writeFileSync('mi-primer-archivo.txt', mensaje, 'utf8');
+
+console.log('✅ ¡Archivo creado exitosamente!');</div>
+                    </div>
+                </div>
+                
+                <div class="demo-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Ejecutar y ver el resultado</h4>
+                        <div class="code">node escribir-mensaje.js
+
+// Salida:
+✅ ¡Archivo creado exitosamente!
+
+// Y se crea el archivo: mi-primer-archivo.txt</div>
+                        <p><strong>¡Revisar en VS Code que aparece el archivo!</strong></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Demo simple - Leer archivo -->
+        <div class="slide demo-slide">
+            <h2>📖 DEMO 2: Leer un archivo de texto</h2>
+            
+            <div class="demo-container">
+                <h3>Ahora vamos a leer el archivo que acabamos de crear</h3>
+                
+                <div class="demo-step">
+                    <span class="step-number">1</span>
+                    <div class="step-content">
+                        <h4>Crear nuevo archivo JavaScript</h4>
+                        <div class="code">// Crear archivo: leer-mensaje.js
+// (crear en VS Code)</div>
+                    </div>
+                </div>
+                
+                <div class="demo-step">
+                    <span class="step-number">2</span>
+                    <div class="step-content">
+                        <h4>Escribir código para leer archivo</h4>
+                        <div class="code">// leer-mensaje.js
+const fs = require('fs');
+
+try {
+    // Leer el archivo que creamos antes
+    const contenido = fs.readFileSync('mi-primer-archivo.txt', 'utf8');
+    
+    console.log('📄 Contenido del archivo:');
+    console.log('========================');
+    console.log(contenido);
+    console.log('========================');
+    console.log('✅ ¡Archivo leído correctamente!');
+    
+} catch (error) {
+    console.log('❌ Error: No se pudo leer el archivo');
+    console.log('¿Existe el archivo mi-primer-archivo.txt?');
+}</div>
+                    </div>
+                </div>
+                
+                <div class="demo-step">
+                    <span class="step-number">3</span>
+                    <div class="step-content">
+                        <h4>Ejecutar y ver el contenido</h4>
+                        <div class="code">node leer-mensaje.js
+
+// Salida:
+📄 Contenido del archivo:
+========================
+¡Hola! Este es mi primer archivo creado con Node.js
+
+Fecha: [la fecha cuando lo creaste]
+Proyecto: Mi API Backend
+Estado: ¡Funcionando perfectamente!
+========================
+✅ ¡Archivo leído correctamente!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Explicación técnica simple -->
+        <div class="slide">
+            <h2>🔍 ¿Cómo funciona exactamente?</h2>
+            
+            <div class="two-columns">
+                <div>
+                    <h3>fs.writeFileSync() - Escribir</h3>
+                    <div class="code">fs.writeFileSync('nombre-archivo.txt', 'contenido', 'utf8');</div>
+                    
+                    <div class="explanation-box">
+                        <h4>Parámetros explicados:</h4>
+                        <ul>
+                            <li><strong>'nombre-archivo.txt'</strong> = ¿Cómo se llama el archivo?</li>
+                            <li><strong>'contenido'</strong> = ¿Qué texto queremos guardar?</li>
+                            <li><strong>'utf8'</strong> = Formato para acentos y ñ</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="success">
+                        <strong>✅ Resultado:</strong> Se crea (o sobrescribe) el archivo con el contenido que le dimos
+                    </div>
+                </div>
+                
+                <div>
+                    <h3>fs.readFileSync() - Leer</h3>
+                    <div class="code">const contenido = fs.readFileSync('nombre-archivo.txt', 'utf8');</div>
+                    
+                    <div class="explanation-box">
+                        <h4>Parámetros explicados:</h4>
+                        <ul>
+                            <li><strong>'nombre-archivo.txt'</strong> = ¿Cuál archivo queremos leer?</li>
+                            <li><strong>'utf8'</strong> = Formato para leer correctamente</li>
+                            <li><strong>contenido</strong> = Variable donde guardamos lo que leyó</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="warning">
+                        <strong>⚠️ try/catch:</strong> Si el archivo no existe, da error. Por eso lo ponemos en try/catch
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 6: Ejercicio súper simple -->
+        <div class="slide practice-slide">
+            <h2>💻 EJERCICIO: Tu primer archivo personalizado</h2>
+            
+            <div class="exercise-container">
+                <div class="exercise-header">
+                    <span class="exercise-icon">⏱️</span>
+                    <h3>10 minutos - Crear y leer tu propio archivo</h3>
+                </div>
+                
+                <div class="exercise-steps">
+                    <div class="exercise-step">
+                        <span class="step-num">1</span>
+                        <div class="step-content">
+                            <strong>Crear archivo: mi-info.js</strong>
+                            <div class="code">// mi-info.js
+const fs = require('fs');
+
+// Personaliza esta información:
+const miInfo = `
+=== MI INFORMACIÓN ===
+Nombre: [TU NOMBRE AQUÍ]
+Proyecto: API [Blog/Restaurante/E-learning/E-commerce]  
+Fecha: ${new Date().toLocaleDateString()}
+
+=== TÉCNICO ===
+Node.js: ${process.version}
+Plataforma: ${process.platform}
+
+¡Aprendiendo Node.js! 🚀
+`;
+
+// Escribir archivo
+fs.writeFileSync('mi-informacion.txt', miInfo, 'utf8');
+console.log('✅ Archivo creado: mi-informacion.txt');</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">2</span>
+                        <div class="step-content">
+                            <strong>Ejecutar y verificar</strong>
+                            <div class="code">node mi-info.js
+
+# Verificar que se creó: mi-informacion.txt
+# Abrir el archivo en VS Code para ver el contenido</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">3</span>
+                        <div class="step-content">
+                            <strong>Crear archivo para leer: mostrar-info.js</strong>
+                            <div class="code">// mostrar-info.js
+const fs = require('fs');
+
+try {
+    const info = fs.readFileSync('mi-informacion.txt', 'utf8');
+    console.log('📄 MI INFORMACIÓN:');
+    console.log(info);
+    console.log('✅ ¡Leído correctamente!');
+} catch (error) {
+    console.log('❌ Error: No se pudo leer el archivo');
+    console.log('💡 Solución: Ejecutar primero "node mi-info.js"');
+}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="exercise-step">
+                        <span class="step-num">4</span>
+                        <div class="step-content">
+                            <strong>Probar la lectura</strong>
+                            <div class="code">node mostrar-info.js
+
+# Debería mostrar toda tu información personalizada</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="success">
+                    <strong>🎯 Objetivo:</strong> Verificar que puedes escribir un archivo con tus datos y después leerlo correctamente.
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 7: Resumen súper claro -->
+        <div class="slide summary-slide">
+            <span class="emoji">🎯</span>
+            <h2>Resumen: Lo que ya sabes hacer</h2>
+            
+            <div class="concept-box">
+                <h3>🔧 Los 2 comandos principales de archivos:</h3>
+                <div class="code">// 1. ESCRIBIR un archivo
+const fs = require('fs');
+fs.writeFileSync('nombre.txt', 'contenido aquí', 'utf8');
+
+// 2. LEER un archivo
+const contenido = fs.readFileSync('nombre.txt', 'utf8');
+console.log(contenido);</div>
+            </div>
+            
+            <div class="two-columns">
+                <div>
+                    <div class="success">
+                        <strong>✅ Ya puedes:</strong>
+                        <ul>
+                            <li>Usar <code>require('fs')</code> para archivos</li>
+                            <li>Crear archivos con <code>writeFileSync()</code></li>
+                            <li>Leer archivos con <code>readFileSync()</code></li>
+                            <li>Manejar errores con <code>try/catch</code></li>
+                            <li>Usar <code>'utf8'</code> para acentos y ñ</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="success">
+                        <strong>🚀 Próximo paso:</strong>
+                        <ul>
+                            <li>Trabajar con archivos JSON</li>
+                            <li>Guardar datos estructurados</li>
+                            <li>Crear "base de datos" temporal</li>
+                            <li>Preparar datos para tu API</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="console-tip">
+                <strong>🎯 En la siguiente sección:</strong> Aprenderemos a usar JSON para guardar posts, menú, productos, cursos como datos estructurados.
+            </div>
+        </div>
+
+    </div>
+
+    <div class="slide-counter">
+        <span id="current-slide">1</span> / <span id="total-slides">7</span>
+    </div>
+
+    <div class="navigation">
+        <button class="nav-btn" onclick="previousSlide()">◀ Anterior</button>
+        <button class="nav-btn" onclick="nextSlide()">Siguiente ▶</button>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+        const progressBar = document.getElementById('progress-bar');
+
+        document.getElementById('total-slides').textContent = totalSlides;
+
+        function updateProgress() {
+            const progress = ((currentSlide + 1) / totalSlides) * 100;
+            progressBar.style.width = progress + '%';
+        }
+
+        function showSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (n + totalSlides) % totalSlides;
+            slides[currentSlide].classList.add('active');
+            document.getElementById('current-slide').textContent = currentSlide + 1;
+            updateProgress();
+        }
+
+        function nextSlide() {
+            showSlide(currentSlide + 1);
+        }
+
+        function previousSlide() {
+            showSlide(currentSlide - 1);
+        }
+
+        // Navegación con teclado
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                e.preventDefault();
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                previousSlide();
+            }
+        });
+
+        // Navegación con click
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.nav-btn')) return;
+            if (e.clientX > window.innerWidth / 2) {
+                nextSlide();
+            } else {
+                previousSlide();
+            }
+        });
+
+        // Touch/swipe para móviles
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+        document.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+
+        document.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+
+        function handleSwipe() {
+            if (touchEndX < touchStartX - 50) {
+                nextSlide();
+            }
+            if (touchEndX > touchStartX + 50) {
+                previousSlide();
+            }
+        }
+
+        // Inicializar
+        updateProgress();
+    </script>
+</body>
+</html>
